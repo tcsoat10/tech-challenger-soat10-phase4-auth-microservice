@@ -1,0 +1,25 @@
+from src.core.ports.permission.i_permission_repository import IPermissionRepository
+from src.core.domain.dtos.permission.update_permission_dto import UpdatePermissionDTO
+from src.core.domain.entities.permission import Permission
+from src.core.exceptions.entity_not_found_exception import EntityNotFoundException
+
+
+class UpdatePermissionUsecase:
+    def __init__(self, permission_gateway: IPermissionRepository):
+        self.permission_gateway = permission_gateway
+
+    @classmethod
+    def build(cls, permission_gateway: IPermissionRepository) -> 'UpdatePermissionUsecase':
+        return cls(permission_gateway)
+    
+    def execute(self, permission_id: int, dto: UpdatePermissionDTO) -> Permission:
+        permission = self.permission_gateway.get_by_id(permission_id)
+        if not permission:
+            raise EntityNotFoundException(entity_name='Permission')
+        
+        permission.name = dto.name
+        permission.description = dto.description
+        updated_permission = self.permission_gateway.update(permission)
+
+        return updated_permission
+    
