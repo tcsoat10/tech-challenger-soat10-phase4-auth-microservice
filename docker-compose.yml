@@ -1,11 +1,11 @@
 version: '3.8'
 
 networks:
-  tech-challenger-net:
+  auth-microservice-net:
     driver: bridge
 
 services:
-  tc-app:
+  auth-microservice-app:
     image: ${APP_NAME}:1.0
     build:
       context: .
@@ -14,12 +14,12 @@ services:
         PORT: ${APP_PORT}
     container_name: ${APP_NAME}
     networks:
-      - tech-challenger-net
+      - auth-microservice-net
     environment:
-      MYSQL_HOST: "mysql-db"
+      MYSQL_HOST: "auth-db"
 
     depends_on:
-      - mysql-db
+      - auth-db
     env_file:
       - .env
     ports:
@@ -32,18 +32,18 @@ services:
       timeout: 10s
       retries: 5
 
-  mysql-db:
+  auth-db:
     image: mysql:${MYSQL_VERSION}
     container_name: ${MYSQL_CONTAINER_NAME}
     restart: always
     networks:
-      - tech-challenger-net
+      - auth-microservice-net
     env_file:
       - .env
     ports:
       - "${MYSQL_PORT}:3306"
     volumes:
-      - mysql-data:/var/lib/mysql
+      - auth-data:/var/lib/mysql
     command: --default-authentication-plugin=mysql_native_password
     healthcheck:
       test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
@@ -53,4 +53,4 @@ services:
 
 
 volumes:
-  mysql-data:
+  auth-data:

@@ -47,7 +47,6 @@ class Container(containers.DeclarativeContainer):
         "src.adapters.driver.api.v1.routes.employee_routes",
         "src.adapters.driver.api.v1.controllers.auth_controller",
         "src.adapters.driver.api.v1.routes.auth_routes",
-        "src.adapters.driver.api.v1.routes.webhook_routes"
     ])
     
     identity_map = providers.Singleton(IdentityMap)

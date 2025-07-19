@@ -20,8 +20,8 @@ migrate_db:
 	alembic upgrade head
 
 dev:
-	@echo "Starting MongoDB container..."
-	@docker compose up -d --build mysql-db
+	@echo "Starting MySQL container..."
+	@docker compose up -d --build auth-db
 	@sleep 5
 	@echo "Applying migrations..."
 	@MYSQL_HOST=localhost ./config/init_db/init_db.sh
