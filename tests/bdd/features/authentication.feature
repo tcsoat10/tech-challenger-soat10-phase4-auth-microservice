@@ -21,3 +21,8 @@ Feature: Autenticação de Usuários
       | can_view_order   |
       | can_view_products |
 
+  Scenario: Login de cliente com CPF não cadastrado
+    Given existe um perfil "customer" cadastrado
+    When eu faço login com o CPF "999.999.999-99" que não está cadastrado
+    Then eu devo receber um erro de "usuário não encontrado"
+
