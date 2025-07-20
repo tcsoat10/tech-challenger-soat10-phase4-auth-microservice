@@ -57,3 +57,18 @@ Feature: Autenticação de Usuários
       | can_view_products |
       | can_view_order   |
 
+  Scenario: Login de gerente com permissões específicas
+    Given existe um perfil "manager" com as permissões:
+      | can_list_orders         |
+      | can_view_order          |
+      | can_update_order_status |
+      | can_view_employees      |
+    And existe um gerente com usuário "manager.user" e senha "manager123"
+    When eu faço login com usuário "manager.user" e senha "manager123"
+    Then eu devo receber um token de acesso
+    And o token deve conter o perfil "manager"
+    And o token deve conter as permissões:
+      | can_list_orders         |
+      | can_view_order          |
+      | can_update_order_status |
+      | can_view_employees      |
