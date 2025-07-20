@@ -26,3 +26,17 @@ Feature: Autenticação de Usuários
     When eu faço login com o CPF "999.999.999-99" que não está cadastrado
     Then eu devo receber um erro de "usuário não encontrado"
 
+  Scenario: Login bem-sucedido de funcionário
+    Given existe um perfil "employee" com as permissões:
+      | can_list_orders        |
+      | can_view_order         |
+      | can_update_order_status |
+    And existe um funcionário com usuário "jane.doe" e senha "password123"
+    When eu faço login com usuário "jane.doe" e senha "password123"
+    Then eu devo receber um token de acesso
+    And o token deve conter o perfil "employee"
+    And o token deve conter as permissões:
+      | can_list_orders        |
+      | can_view_order         |
+      | can_update_order_status |
+
