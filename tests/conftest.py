@@ -22,6 +22,7 @@ from tests.factories.user_profile_factory import UserProfileFactory
 from tests.factories.person_factory import PersonFactory
 from tests.factories.customer_factory import CustomerFactory
 
+pytest_plugins = ["pytest_bdd"]
 
 @pytest.fixture(scope="function")
 def test_engine(tmp_path_factory):
