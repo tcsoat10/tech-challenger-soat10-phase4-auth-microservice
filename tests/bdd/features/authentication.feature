@@ -40,3 +40,9 @@ Feature: Autenticação de Usuários
       | can_view_order         |
       | can_update_order_status |
 
+  Scenario: Login de funcionário com senha incorreta
+    Given existe um perfil "employee" com a permissão "can_list_orders"
+    And existe um funcionário com usuário "jane.doe" e senha "password123"
+    When eu faço login com usuário "jane.doe" e senha "wrong_password"
+    Then eu devo receber um erro de "credenciais inválidas"
+
