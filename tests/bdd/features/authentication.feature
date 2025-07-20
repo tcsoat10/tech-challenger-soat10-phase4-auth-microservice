@@ -46,3 +46,14 @@ Feature: Autenticação de Usuários
     When eu faço login com usuário "jane.doe" e senha "wrong_password"
     Then eu devo receber um erro de "credenciais inválidas"
 
+  Scenario: Login anônimo de cliente
+    Given existe um perfil "customer" com as permissões:
+      | can_view_products |
+      | can_view_order   |
+    When eu faço um login anônimo
+    Then eu devo receber um token de acesso
+    And o token deve conter o perfil "customer"
+    And o token deve conter as permissões:
+      | can_view_products |
+      | can_view_order   |
+
