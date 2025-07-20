@@ -13,7 +13,7 @@ class TestPersonRepository:
     
     @pytest.fixture(autouse=True)
     def setup(self, db_session):
-        self.repository = PersonRepository(db_session)
+        self.repository: PersonRepository = PersonRepository(db_session)
         self.db_session = db_session
         self.clean_database()
 
@@ -65,14 +65,6 @@ class TestPersonRepository:
         assert person.cpf == new_person.cpf
         assert person.name == new_person.name
         assert person.email == new_person.email
-
-    @pytest.mark.skip(reason="Not implemented yet")
-    def test_get_person_by_name_with_unregistered_name(self):
-        PersonFactory()
-
-        person = self.repository.get_by_name('not a name')
-
-        assert person is None
 
     def test_get_by_id_success(self):
         new_person = PersonFactory()
