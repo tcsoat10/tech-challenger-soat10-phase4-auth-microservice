@@ -7,7 +7,7 @@ import os
 DATABASE = {
     "drivername": "mysql+pymysql",
     "host": os.getenv("MYSQL_HOST", "localhost"),
-    "port": os.getenv("MYSQL_PORT", "3306"),
+    "port": os.getenv("MYSQL_PORT", "3307"),
     "user": os.getenv("MYSQL_USER", "user"),
     "password": os.getenv("MYSQL_PASSWORD", "password"),
     "name": os.getenv("MYSQL_DATABASE", "db_name"),
