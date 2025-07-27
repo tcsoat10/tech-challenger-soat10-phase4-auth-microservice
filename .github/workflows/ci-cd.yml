@@ -82,8 +82,7 @@ jobs:
 
       - name: Generate Coverage Report
         run: |
-          poetry run coverage report --omit=tests/*
-          poetry run coverage xml
+          poetry run coverage xml --include="src/*" --omit="*/dependency_injector/*"
 
       - name: Upload Coverage Report
         uses: actions/upload-artifact@v4
