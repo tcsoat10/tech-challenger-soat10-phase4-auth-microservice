@@ -1,0 +1,3 @@
+db_username = "auth_microservice_user"
+db_password = "X2Zy3Wrn8Qp5Lv6"
+secret_key = "cLpJ7qo7POVBQJQ1DRFxLXq2n7n8BrQ0yy5hGY9Vtovur5xAEvaX_5UL9WZCen57oqTmRtSnGPAykn3rJgMQTw"
