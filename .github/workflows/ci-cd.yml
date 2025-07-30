@@ -131,7 +131,7 @@ jobs:
 
   deploy_db:
     name: Deploy Database
-    needs: test
+    needs: run_sonarqube
     runs-on: ubuntu-latest
     environment: production
     steps:
